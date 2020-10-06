@@ -1,8 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 
-import { Button, CircularProgress, Paper, Typography } from "@material-ui/core"
+import { Button, Paper, Typography } from "@material-ui/core"
 
+import CircleTimer from "../components/CircleTimer"
 import useTimer from "../hooks/useTimer"
 
 const Container = styled(Paper)`
@@ -20,15 +21,11 @@ const Home = () => {
 
   const time = useTimer(start, START_TIME, stopExercise)
 
-  const progress = ((START_TIME - time) / START_TIME) * 100
+  const progress = (time / START_TIME) * 100
 
   return (
-    <Container variant="outlined" style={{ textAlign: "center", padding: 20 }}>
-      <CircularProgress
-        size={200}
-        variant="static"
-        value={progress}
-      ></CircularProgress>
+    <Container variant="outlined">
+      <CircleTimer progress={progress} />
       <br />
       <Typography variant="h6">Time left: {Math.ceil(time)}</Typography>
       <br />
